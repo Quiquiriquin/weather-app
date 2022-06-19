@@ -1,0 +1,38 @@
+@import "colors";
+
+$themes: (
+        bgThemeColor1: (
+                darkTheme: $blueDark2,
+                lightTheme: $grey200,
+        ),
+        bgThemeColor2: (
+                darkTheme: $blueDark,
+                lightTheme: $grey200,
+        ),
+        textThemeColor1: (
+                darkTheme: $grey100,
+                lightTheme: $blueDark2,
+        ),
+        boxShadowColor: (
+                darkTheme: rgba(255, 255, 255, 0.2),
+                lightTheme: rgba(50, 50, 93, 0.25),
+        ),
+);
+
+@mixin styles($mode) {
+  @each $key, $map in $themes {
+    @each $prop, $color in $map {
+      @if $prop == $mode {
+        --#{$key}: #{$color};
+      }
+    }
+  }
+}
+
+.dark-mode {
+  @include styles("darkTheme");
+}
+
+.light-mode {
+  @include styles("lightTheme");
+}
